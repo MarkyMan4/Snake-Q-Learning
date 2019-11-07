@@ -1,0 +1,36 @@
+function q-learning():
+	new MDP(world)
+	weight1, weight2 = 0
+	set all Q values to 0
+	init feature vectors (should be a feature vector for each state-action pair)
+	epsilon = 0.9
+	future_discount = 0.9
+	alpha = 0.9
+
+	for 10,000 episodes:
+		for each time step, while not dead:
+
+			if random >= epsilon:
+				action = get_greedy_action(current_pos)
+			else:
+				action = random direction
+
+			next_state = MDP.get_next_state(current_pos, action)
+			update_q_values()
+
+			reward = get_reward(next_state)
+			current_q_value = get_q_value(x, y, action)
+			greedy_action = get_greedy_action(current_pos)
+			greedy_q_value = get_greedy_q_value(current_pos, greedy_action)
+			delta = reward + (future_discount * greedy_q_value) - current_q_value
+			weight1 = weight1 + (alpha * delta * features[x][y][action].getF1())
+			weight2 = weight2 + (alpha * delta * features[x][y][action].getF2())
+
+			current_pos = next_state
+			steps += 1
+
+		reduce epsilon every 200 episodes
+		reduce alpha every 1000 episodes
+		test run every 100 episodes
+
+	write_final_policy()

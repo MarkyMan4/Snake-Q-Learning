@@ -50,7 +50,7 @@ def game_loop():
 	direction = UP
 
 	world = s.get_world()
-	init_rewards(world)
+	rewards = init_rewards(world)
 
 	for i in range(EPISODES):
 		direction = get_random_move()
